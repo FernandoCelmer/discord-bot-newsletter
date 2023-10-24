@@ -1,0 +1,37 @@
+name: 📦 Script Discord Bot
+
+on:
+  schedule:
+    - cron:  '0 9 * * *'
+
+  push:
+    branches: [ "master" ]
+
+permissions:
+  contents: write
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: ⚙️ Set up Python 3.11
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.11"
+
+    - name: ⚙️ Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt --no-cache-dir
+
+    - name: ✅ Run Script
+      env:
+        DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+        DISCORD_CHANNEL_ID: ${{ secrets.DISCORD_CHANNEL_ID }}
+      run: |
+        python ./main.py
