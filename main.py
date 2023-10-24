@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-def load_news(limit: str = 10):
+def load_news(limit: str = 25):
     return json.loads(
         open(file="newsletter.json", mode="r").read()
     )[0:limit]
