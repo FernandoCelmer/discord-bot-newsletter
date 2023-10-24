@@ -33,13 +33,6 @@ class ClientNewsletter(discord.Client):
             if datetime.strptime(news.get("date"), "%m-%d-%Y").date() == date.today():
                 await channel.send(MESSAGE.format(**news))
 
-    async def on_message(self, message):
-        if message.author == self.user:
-            return
-
-        if message.content == 'ping':
-            await message.channel.send(message.channel.id)
-
 
 if __name__ == '__main__':
     intents = discord.Intents.default()
