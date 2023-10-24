@@ -7,11 +7,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-def load_news(limit: str = 25):
-    return json.loads(
-        open(file="newsletter.json", mode="r").read()
-    )[0:limit]
-
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 DISCORD_CHANNEL_ID = os.getenv("DISCORD_CHANNEL_ID")
 MESSAGE = """_____
@@ -28,8 +23,10 @@ class ClientNewsletter(discord.Client):
 
     async def send_newsletter(self):
         channel = client.get_partial_messageable(DISCORD_CHANNEL_ID)
+        newsletter = json.loads(
+            open(file="newsletter.json", mode="r").read())[0:50]
 
-        for news in load_news():
+        for news in newsletter:
             if datetime.strptime(news.get("date"), "%m-%d-%Y").date() == date.today():
                 await channel.send(MESSAGE.format(**news))
 
