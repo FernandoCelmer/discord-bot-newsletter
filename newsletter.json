@@ -1,5 +1,53 @@
 [
     {
+        "type": "Tutorial",
+        "title": "Bash scripting cheatsheet",
+        "link": "https://devhints.io/bash",
+        "date": "10-27-2023"
+    },
+    {
+        "type": "Article",
+        "title": "8 Dicas Interessantes para seu Vim",
+        "link": "https://terminalroot.com.br/2020/10/8-dicas-interessantes-para-seu-vim.html",
+        "date": "10-27-2023"
+    },
+    {
+        "type": "Article",
+        "title": "8 Design Patterns Every Programmer Should Know",
+        "link": "https://neetcode.io/courses/lessons/8-design-patterns",
+        "date": "10-27-2023"
+    },
+    {
+        "type": "Book",
+        "title": "Cosmic Python",
+        "link": "https://www.cosmicpython.com/",
+        "date": "10-26-2023"
+    },
+    {
+        "type": "Video",
+        "title": "O que são decoradores? | Live de Python #213",
+        "link": "https://www.youtube.com/watch?v=lL9amfaaRws",
+        "date": "10-26-2023"
+    },
+    {
+        "type": "Article",
+        "title": "Conventional Commits Pattern",
+        "link": "https://medium.com/linkapi-solutions/conventional-commits-pattern-3778d1a1e657",
+        "date": "10-26-2023"
+    },
+    {
+        "type": "Podcast",
+        "title": "PORTAL DE DESENVOLVDORES c/ Victor Fonseca, Gabriel Dantas, Leo Vieira e Caio Queiroz #159",
+        "link": "https://www.youtube.com/watch?v=TzH8vCN0sEI",
+        "date": "10-25-2023"
+    },
+    {
+        "type": "Article",
+        "title": "Write a Python module in Rust",
+        "link": "https://mathspp.com/blog/write-a-python-module-in-rust",
+        "date": "10-25-2023"
+    },
+    {
         "type": "Article",
         "title": "The Twelve-Factor App",
         "link": "https://12factor.net",
