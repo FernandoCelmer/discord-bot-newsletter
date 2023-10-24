@@ -1,0 +1,26 @@
+[
+    {
+        "type": "Article",
+        "title": "The Twelve-Factor App",
+        "link": "https://12factor.net",
+        "date": "10-25-2023"
+    },
+    {
+        "type": "Article",
+        "title": "Serverless Architecture for a Web Scraping Solution",
+        "link": "https://aws.amazon.com/blogs/architecture/serverless-architecture-for-a-web-scraping-solution",
+        "date": "10-24-2023"
+    },
+    {
+        "type": "Video",
+        "title": "How to OVER Engineer a Website // What is a Tech Stack?",
+        "link": "https://www.youtube.com/watch?v=Sxxw3qtb3_g",
+        "date": "10-24-2023"
+    },
+    {
+        "type": "Article",
+        "title": "Understanding AWS Lambda scaling and throughput",
+        "link": "https://aws.amazon.com/pt/blogs/compute/understanding-aws-lambda-scaling-and-throughput",
+        "date": "10-24-2023"
+    }
+]
