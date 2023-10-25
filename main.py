@@ -9,10 +9,10 @@ load_dotenv()
 
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 DISCORD_CHANNEL_ID = os.getenv("DISCORD_CHANNEL_ID")
-MESSAGE = """_____
-> **{title}**
-Type: {type}
-Link: {link}
+MESSAGE = """## :newspaper: [{title}]({link}) 
+**Details:**
+> Type: `{type}`  Date: `[{date}]`
+> Link: {link}
 """
 
 class ClientNewsletter(discord.Client):
