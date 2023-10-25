@@ -37,6 +37,12 @@
     },
     {
         "type": "Podcast",
+        "title": "PyPI Security",
+        "link": "https://talkpython.fm/episodes/show/435/pypi-security",
+        "date": "10-26-2023"
+    }
+    {
+        "type": "Podcast",
         "title": "PORTAL DE DESENVOLVDORES c/ Victor Fonseca, Gabriel Dantas, Leo Vieira e Caio Queiroz #159",
         "link": "https://www.youtube.com/watch?v=TzH8vCN0sEI",
         "date": "10-25-2023"
