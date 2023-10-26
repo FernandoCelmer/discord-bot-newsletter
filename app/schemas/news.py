@@ -10,10 +10,10 @@ class SchemaBase(BaseModel):
 
 
 class SchemaPatch(BaseModel):
-    type: Optional[bool]
-    title: Optional[bool]
-    link: Optional[bool]
-    status: Optional[bool]
+    type: Optional[str] = None
+    title: Optional[str] = None
+    link: Optional[str] = None
+    status: Optional[bool] = None
 
 
 class SchemaCreate(SchemaBase):

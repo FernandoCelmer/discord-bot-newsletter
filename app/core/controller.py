@@ -80,15 +80,15 @@ class BaseController(object):
     def update(
             self,
             data: dict,
-            model_id: int = None,
+            id: int = None,
             params: dict = list()):
         """Edit a record in the database.
         """
         try:
             query_model = self.db.query(self.model_class)
-            if model_id:
+            if id:
                 query_model = query_model.filter(
-                    self.model_class.id == model_id
+                    self.model_class.id == id
                 )
 
             if params:

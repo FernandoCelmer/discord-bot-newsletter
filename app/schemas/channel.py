@@ -3,13 +3,13 @@ from pydantic import BaseModel
 
 
 class SchemaBase(BaseModel):
-    name: Optional[str] = None
+    name: Optional[str]
     status: Optional[bool] = True
 
 
 class SchemaPatch(BaseModel):
-    name: Optional[str]
-    status: Optional[bool]
+    name: Optional[str] = None
+    status: Optional[bool] = None
 
 
 class SchemaCreate(SchemaBase):

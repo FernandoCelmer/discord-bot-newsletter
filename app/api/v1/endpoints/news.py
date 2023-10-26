@@ -12,17 +12,16 @@ from app.controllers.news import ControllerChannel as Controller
 router = APIRouter()
 
 
-
 @router.get("/news", response_model=List[Schema])
 def get_all(
         request: Request,
+        date: str,
         offset: int = 0,
         limit: int = 100,
         sort_by: str = 'id',
         order_by: str = 'desc',
         db: Session = Depends(get_db)):
     news_date = request.query_params.get("date")
-
     if datetime.strptime(news_date, "%Y-%m-%d").date() > date.today():
         return []
 
