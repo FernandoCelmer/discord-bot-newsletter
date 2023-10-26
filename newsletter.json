@@ -3,6 +3,12 @@
         "type": "Tutorial",
         "title": "Bash scripting cheatsheet",
         "link": "https://devhints.io/bash",
+        "date": "10-30-2023"
+    },
+    {
+        "type": "Tutorial",
+        "title": "Bash scripting cheatsheet",
+        "link": "https://devhints.io/bash",
         "date": "10-27-2023"
     },
     {
@@ -12,9 +18,9 @@
         "date": "10-27-2023"
     },
     {
-        "type": "Article",
-        "title": "8 Design Patterns Every Programmer Should Know",
-        "link": "https://neetcode.io/courses/lessons/8-design-patterns",
+        "type": "Video",
+        "title": "ASSINANDO Imagens de CONTAINER com COSIGN: Um Guia Passo a Passo!",
+        "link": "https://www.youtube.com/watch?v=Vn-8Iio-GaU",
         "date": "10-27-2023"
     },
     {
