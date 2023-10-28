@@ -4,12 +4,13 @@ from sqlalchemy import (
     Column,
     DateTime,
     String,
-    Integer)
+    Integer
+)
 from app.core.database import Base, engine
 
 
 class Channel(Base):
-    """Model Auth Users
+    """Model Channel
     """
 
     __tablename__ = "channel"

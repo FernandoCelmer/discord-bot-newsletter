@@ -1,19 +1,27 @@
+from datetime import date
+
 from typing import Optional
 from pydantic import BaseModel
 
 
 class SchemaBase(BaseModel):
-    type: str
     title: str
-    link: str
-    status: Optional[bool] = True
+    category: str
+    url: str
+    thumbnail: str
+    description: str
+    status: bool = True
+    scheduled: date = None
 
 
 class SchemaPatch(BaseModel):
-    type: Optional[str] = None
     title: Optional[str] = None
-    link: Optional[str] = None
-    status: Optional[bool] = None
+    category: Optional[str] = None
+    url: Optional[str] = None
+    thumbnail: Optional[str] = None
+    description: Optional[str] = None
+    status: bool = None
+    scheduled: date = None
 
 
 class SchemaCreate(SchemaBase):
