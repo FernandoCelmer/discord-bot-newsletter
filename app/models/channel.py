@@ -4,7 +4,7 @@ from sqlalchemy import (
     Column,
     DateTime,
     String,
-    Integer
+    BIGINT
 )
 from app.core.database import Base, engine
 
@@ -16,7 +16,7 @@ class Channel(Base):
     __tablename__ = "channel"
     __table_args__ = {'extend_existing': True}
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(BIGINT, primary_key=True, index=True, autoincrement=False)
     name = Column(String(100))
     status = Column(Boolean, default=True)
     created_date = Column(DateTime, default=datetime.utcnow)

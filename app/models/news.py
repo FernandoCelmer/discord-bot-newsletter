@@ -24,7 +24,7 @@ class News(Base):
     thumbnail = Column(String(145))
     description = Column(String(100))
     status = Column(Boolean, default=False)
-    scheduled = Column(Date)
+    scheduled = Column(Date, index=True)
     created_date = Column(
         DateTime,
         default=datetime.utcnow
