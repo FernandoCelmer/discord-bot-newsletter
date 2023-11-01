@@ -1,5 +1,5 @@
 from typing import List
-from datetime import date, datetime
+from datetime import datetime, date
 
 from sqlalchemy.orm import Session
 from fastapi import Depends, APIRouter, Request, status
@@ -15,14 +15,14 @@ router = APIRouter()
 @router.get("/news", response_model=List[Schema])
 def get_all(
         request: Request,
-        date: str,
+        scheduled: str,
         offset: int = 0,
         limit: int = 100,
         sort_by: str = 'id',
         order_by: str = 'desc',
         db: Session = Depends(get_db)):
-    news_date = request.query_params.get("date")
-    if datetime.strptime(news_date, "%Y-%m-%d").date() > date.today():
+    scheduled = request.query_params.get("scheduled")
+    if datetime.strptime(scheduled, "%Y-%m-%d").date() > date.today():
         return []
 
     return Controller(db=db).read(
