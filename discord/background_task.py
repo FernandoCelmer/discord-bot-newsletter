@@ -6,7 +6,7 @@ from requests import get
 from datetime import date
 
 from schema import SchemaNews
-from config import Config
+from discord.configurations import Config
 
 config = Config()
 
