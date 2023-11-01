@@ -48,6 +48,6 @@ def update(id: int, item: SchemaPatch, db: Session = Depends(get_db)):
     return Controller(db=db).update(data=item.dict(), id=id)
 
 
-@router.post("/news/", response_model=Schema, status_code=status.HTTP_201_CREATED)
+@router.post("/news", response_model=Schema, status_code=status.HTTP_201_CREATED)
 def create(item: SchemaCreate, db: Session = Depends(get_db)):
     return Controller(db=db).create(data=item.dict())
