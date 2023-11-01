@@ -1,0 +1,2 @@
+discord-py==2.3.2 ; python_version >= "3.11" and python_version < "4.0"
+python-dotenv==1.0.0 ; python_version >= "3.11" and python_version < "4.0"
