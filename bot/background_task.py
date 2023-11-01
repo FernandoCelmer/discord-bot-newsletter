@@ -4,6 +4,8 @@ from typing import List
 
 from requests import get
 from datetime import date
+
+from schema import SchemaNews
 from config import Config
 
 config = Config()
@@ -22,24 +24,25 @@ class ClientNewsletter(discord.Client):
 
         for news in self.get_newsletter():
             embed = discord.Embed(
-                title=news['title'].rjust(50)[0:50],
-                description=f"{news['description']}...",
-                url=news.get('url')
+                title=news.title,
+                description=news.description,
+                url=news.url
             )
-            embed.add_field(name='Category', value=news.get('category'))
-            embed.add_field(name='Date', value=news.get('scheduled'))
-            embed.set_thumbnail(url=news.get('thumbnail'))
+            embed.add_field(name='Category', value=news.category)
+            embed.add_field(name='Date', value=news.scheduled)
+            embed.set_thumbnail(url=news.thumbnail)
 
             await channel.send(embed=embed)
 
     @staticmethod
-    def get_newsletter() -> List[dict]:
+    def get_newsletter() -> List[SchemaNews]:
         response = get(
             url=f'{config.api_url}/v1/news',
             params={'scheduled': str(date.today())}
         )
         if response.status_code == 200:
-            return json.loads(response.text)
+            data = json.loads(response.text)
+            return [SchemaNews(**news) for news in data]
         return []
 
 
