@@ -28,9 +28,13 @@ class ClientNewsletter(discord.Client):
                 description=news.description,
                 url=news.url
             )
+            embed.set_author(
+                name="Newsletter",
+                url="https://github.com/FernandoCelmer/discord-bot-newsletter"
+            )     
+            embed.set_thumbnail(url=news.thumbnail)
             embed.add_field(name='Category', value=news.category)
             embed.add_field(name='Date', value=news.scheduled)
-            embed.set_thumbnail(url=news.thumbnail)
 
             await channel.send(embed=embed)
 
