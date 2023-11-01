@@ -3,8 +3,8 @@ from pydantic import BaseModel
 
 
 class SchemaBase(BaseModel):
-    name: Optional[str]
-    status: Optional[bool] = True
+    name: str
+    status: bool = True
 
 
 class SchemaPatch(BaseModel):
