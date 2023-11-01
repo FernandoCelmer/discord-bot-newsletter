@@ -1,6 +1,7 @@
 import logging
 
 from sqlalchemy.orm import Session
+from sqlalchemy.exc import IntegrityError
 from app.core.database import engine
 
 
@@ -54,6 +55,7 @@ class BaseController(object):
 
         except Exception as error:
             logging.error(error)
+            raise Exception(error)
 
         finally:
             if self.close_session:
@@ -63,15 +65,20 @@ class BaseController(object):
         """Create a record in the database.
         """
         db_data = self.model_class(**data)
+
         try:
             self.db.add(db_data)
             self.db.commit()
             self.db.refresh(db_data)
             return db_data
 
-        except Exception as error:
+        except IntegrityError as error:
             logging.error(error)
             return None
+
+        except Exception as error:
+            logging.error(error)
+            raise Exception(error)
 
         finally:
             if self.close_session:
@@ -113,7 +120,7 @@ class BaseController(object):
 
         except Exception as error:
             logging.error(error)
-            return None
+            raise Exception(error)
 
         finally:
             if self.close_session:
