@@ -1,0 +1,10 @@
+{
+    "name": "discord-bot-newsletter",
+    "version": "1.0.0",
+    "description": "Newsletter API",
+    "author": "Fernando Celmer",
+    "license": "MIT",
+    "devDependencies": {
+        "serverless-python-requirements": "^6.0.0"
+    }
+}
