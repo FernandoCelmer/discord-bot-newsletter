@@ -1,3 +1,5 @@
+import uuid
+
 from datetime import datetime
 from sqlalchemy import (
     Boolean,
@@ -5,7 +7,8 @@ from sqlalchemy import (
     DateTime,
     Date,
     String,
-    Integer
+    Integer,
+    Uuid
 )
 from app.core.database import Base, engine
 
@@ -17,7 +20,7 @@ class News(Base):
     __tablename__ = "news"
     __table_args__ = {'extend_existing': True}
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(Uuid(as_uuid=True), primary_key=True, default=uuid.uuid4)
     title = Column(String(75))
     category = Column(String(25))
     url = Column(String(145))
