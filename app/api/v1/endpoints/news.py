@@ -50,4 +50,9 @@ def update(id: int, item: SchemaPatch, db: Session = Depends(get_db)):
 
 @router.post("/news", response_model=Schema, status_code=status.HTTP_201_CREATED)
 def create(item: SchemaCreate, db: Session = Depends(get_db)):
-    return Controller(db=db).create(data=item.dict())
+    instance = Controller(db=db).create(data=item.dict())
+    if not instance:
+        raise HTTPException(
+            status_code=status.HTTP_409_CONFLICT
+        )
+    return instance

@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from fastapi import Depends, APIRouter, Request, status, HTTPException
 
 from app.core.database import get_db
-from app.schemas.channel import Schema, SchemaPatch
+from app.schemas.channel import Schema, SchemaPatch, SchemaCreate
 from app.controllers.channel import ControllerChannel as Controller
 
 
@@ -43,9 +43,10 @@ def update(model_id: int, item: SchemaPatch, db: Session = Depends(get_db)):
 
 
 @router.post("/channel", response_model=Schema, status_code=status.HTTP_201_CREATED)
-def create(item: Schema, db: Session = Depends(get_db)):
+def create(item: SchemaCreate, db: Session = Depends(get_db)):
     instance = Controller(db=db).create(data=item.dict())
     if not instance:
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT
         )
+    return instance
