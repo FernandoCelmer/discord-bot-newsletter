@@ -7,8 +7,7 @@ from datetime import date
 
 from configurations import Config
 from api.api_news import ApiNews
-
-config = Config()
+from api.api_channel import ApiChannel
 
 
 class ClientNewsletter(discord.Client):
@@ -18,16 +17,14 @@ class ClientNewsletter(discord.Client):
         await self.close()
 
     async def send_newsletter(self):
-        request = ApiNews()
-        response = request.get(
+        response_channels = ApiChannel().get(
+            params={"status": 'true'}
+        )
+        response_news = ApiNews().get(
             scheduled=str(date.today())
         )
 
-        channel = client.get_partial_messageable(
-            config.discord_channel_id
-        )
-        
-        for news in response.data:
+        for news in response_news.data:
             embed = discord.Embed(
                 title=news.title,
                 description=news.description,
@@ -41,10 +38,13 @@ class ClientNewsletter(discord.Client):
             embed.add_field(name='Category', value=news.category)
             embed.add_field(name='Date', value=news.scheduled)
 
-            await channel.send(embed=embed)
+            for channel in response_channels.data:
+                driver = client.get_partial_messageable(channel.code)
+                await driver.send(embed=embed)
 
 
 if __name__ == '__main__':
+    config = Config()
     intents = discord.Intents.default()
     intents.message_content = True
 

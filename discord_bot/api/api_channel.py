@@ -5,15 +5,14 @@ from api.schema import SchemaChannel
 from api.base import BaseAPI, BaseResponse, is_ok
 
 
-
 class ApiChannel(BaseAPI):
 
     RESOURCE = 'channel'
 
     @BaseResponse.schema(schema=SchemaChannel)
-    def get(self, code: str) -> List[SchemaChannel]:
+    def get(self, params: dict) -> List[SchemaChannel]:
         return self._get(
-            params={"code": code}
+            params=params
         )
 
     @BaseResponse.schema(schema=SchemaChannel)
@@ -28,7 +27,7 @@ class ApiChannel(BaseAPI):
 
     @BaseResponse.schema(schema=SchemaChannel)
     def patch(self, code: str, status: bool = False) -> List[SchemaChannel]:
-        response = self.get(code=code)
+        response = self.get(params={"code": code})
 
         if is_ok(response=response) and response.data:
             return self._patch(
