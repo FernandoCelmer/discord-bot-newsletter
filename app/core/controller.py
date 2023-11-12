@@ -3,35 +3,29 @@ import logging
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 from app.core.database import engine
+from app.core.query import QueryData
 
 
 class BaseController(object):
-    """ Base View to create helpers common to all Webservices.
+    """Base View to create helpers common to all Webservices.
     """
 
     def __init__(self, db: Session = None):
         """Constructor
         """
         self.close_session = None
+        self.model_class = None
+
         if db:
             self.db = db
         else:
             self.db = Session(engine)
             self.close_session = True
 
-        self.model_class = None
-
-    def load_columns(self, params: dict = {}):
-        self.columns = dict()
-        for param in self.model_class.__mapper__.attrs.keys():
-            if params.get(param) is not None:
-                self.columns[param] = None if params.get(
-                    param) == '' else params.get(param)
-
     def read(
             self,
             offset: int = 0,
-            limit: int = 10,
+            limit: int = 100,
             sort_by: str = 'id',
             order_by: str = 'desc',
             qtype: str = 'first',
@@ -39,14 +33,18 @@ class BaseController(object):
             **kwargs):
         """Get a record from the database.
         """
-        self.load_columns(params)
-        limit = limit if limit <= 10 else 10
+        limit = limit if limit <= 100 else 100
+        query_data = QueryData(
+            model_class=self.model_class,
+            params=params
+        )
 
         try:
             query_model = self.db.query(self.model_class)
-            for column in self.columns:
+            for data in query_data:
                 query_model = query_model.filter(
-                    getattr(self.model_class, column) == self.columns.get(column))
+                    data.field == data.value
+                )
 
             sort_by = getattr(self.model_class, sort_by)
 
