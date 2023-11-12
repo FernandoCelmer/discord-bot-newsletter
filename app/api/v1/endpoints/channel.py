@@ -1,3 +1,4 @@
+from uuid import UUID
 from typing import List
 
 from sqlalchemy.orm import Session
@@ -30,16 +31,16 @@ def get_all(
 
 
 @router.get("/channel/{id}", response_model=Schema)
-def get_one(id: int, db: Session = Depends(get_db)):
+def get_one(id: UUID, db: Session = Depends(get_db)):
     return Controller(db=db).read(
         qtype='first',
         params={"id": id}
     )
 
 
-@router.patch("/channel/{model_id}", response_model=Schema)
-def update(model_id: int, item: SchemaPatch, db: Session = Depends(get_db)):
-    return Controller(db=db).update(data=item.dict(), model_id=model_id)
+@router.patch("/channel/{id}", response_model=Schema)
+def update(id: UUID, item: SchemaPatch, db: Session = Depends(get_db)):
+    return Controller(db=db).update(data=item.dict(), id=id)
 
 
 @router.post("/channel", response_model=Schema, status_code=status.HTTP_201_CREATED)
