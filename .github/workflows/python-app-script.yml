@@ -33,6 +33,6 @@ jobs:
     - name: ✅ Run Script
       env:
         DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
-        API_URL_PROD: ${{ secrets.API_URL }}
+        API_URL: ${{ secrets.API_URL_PROD }}
       run: |
         python ./discord_bot/bot_serverless_task.py
