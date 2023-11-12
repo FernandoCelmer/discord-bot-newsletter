@@ -1,9 +1,10 @@
+from uuid import UUID, uuid4
 from datetime import date
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel, Field, field_validator
 
 
 class SchemaNews(BaseModel):
-    id: int
+    id: UUID = Field(default_factory=uuid4)
     title: str
     category: str
     url: str
@@ -21,6 +22,10 @@ class SchemaNews(BaseModel):
     @classmethod
     def validate_description(cls, value: str) -> str:
         return f'{value}...'
-    
-    class Config:
-        from_attributes = False
+
+
+class SchemaChannel(BaseModel):
+    id: UUID = Field(default_factory=uuid4)
+    name: str
+    code: str
+    status: bool
