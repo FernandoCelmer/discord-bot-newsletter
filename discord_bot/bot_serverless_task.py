@@ -1,12 +1,12 @@
 import json
 import discord
-from typing import List
 
+from typing import List
 from requests import get
 from datetime import date
 
-from schema import SchemaNews
 from configurations import Config
+from api.api_news import ApiNews
 
 config = Config()
 
@@ -18,11 +18,16 @@ class ClientNewsletter(discord.Client):
         await self.close()
 
     async def send_newsletter(self):
+        request = ApiNews()
+        response = request.get(
+            scheduled=str(date.today())
+        )
+
         channel = client.get_partial_messageable(
             config.discord_channel_id
         )
-
-        for news in self.get_newsletter():
+        
+        for news in response.data:
             embed = discord.Embed(
                 title=news.title,
                 description=news.description,
@@ -37,17 +42,6 @@ class ClientNewsletter(discord.Client):
             embed.add_field(name='Date', value=news.scheduled)
 
             await channel.send(embed=embed)
-
-    @staticmethod
-    def get_newsletter() -> List[SchemaNews]:
-        response = get(
-            url=f'{config.api_url}/v1/news',
-            params={'scheduled': str(date.today())}
-        )
-        if response.status_code == 200:
-            data = json.loads(response.text)
-            return [SchemaNews(**news) for news in data]
-        return []
 
 
 if __name__ == '__main__':
