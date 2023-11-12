@@ -39,11 +39,11 @@ class QueryData:
                 field_model = getattr(model_class, param)
                 field_value = params.get(param)
 
-                if field_value == 'null':
+                if field_value in ['null', 'None']:
                     field_value = None
 
                 if isinstance(field_model.type, Boolean):
-                    field_value = True if field_value == 'true' else False
+                    field_value = True if field_value in ['True', 'true'] else False
 
                 if isinstance(field_model.type, Integer):
                     field_value = int(field_value)
