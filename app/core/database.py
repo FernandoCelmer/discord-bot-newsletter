@@ -1,6 +1,5 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker, registry
 from app.core.settings import Settings
 
 
@@ -17,7 +16,9 @@ SessionLocal = sessionmaker(
     autoflush=False,
     bind=engine
 )
-Base = declarative_base()
+
+mapper_registry = registry()
+Base = mapper_registry.generate_base()
 
 
 def get_db():
