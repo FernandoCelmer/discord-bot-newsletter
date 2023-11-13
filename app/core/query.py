@@ -43,7 +43,11 @@ class QueryData:
                     field_value = None
 
                 if isinstance(field_model.type, Boolean):
-                    field_value = True if field_value in ['True', 'true'] else False
+                    if str(field_value).lower() in ['true', '1']:
+                        field_value = True
+
+                    if str(field_value).lower() in ['false', '0']:
+                        field_value = False
 
                 if isinstance(field_model.type, Integer):
                     field_value = int(field_value)
