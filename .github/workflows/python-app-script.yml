@@ -5,7 +5,8 @@ on:
     - cron:  '0 9 * * 1-5'
 
   push:
-    - master
+    branches:
+      - master
 
 permissions:
   contents: write
