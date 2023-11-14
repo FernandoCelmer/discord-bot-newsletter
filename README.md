@@ -1,4 +1,4 @@
-# bot-newsletter
+# newsletter-bot
 
 ## Commit Style
 
