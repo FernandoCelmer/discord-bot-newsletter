@@ -1,4 +1,4 @@
-# discord-bot-newsletter
+# bot-newsletter
 
 ## Commit Style
 
