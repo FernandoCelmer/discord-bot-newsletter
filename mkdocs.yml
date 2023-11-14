@@ -1,0 +1,18 @@
+site_name: Bot 
+repo_name: FernandoCelmer/newsletter-bot
+repo_url: https://github.com/FernandoCelmer/newsletter-bot
+site_url: https://fernandocelmer.github.io/newsletter-bot
+copyright: Fernando Celmer
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - nav/discord.md
+
+theme:
+  name: simple-blog
+  theme_style: dark
+  logo: assets/newsletter-bot.png
+  favicon: assets/newsletter-bot.png
+  components:
+    title: false
